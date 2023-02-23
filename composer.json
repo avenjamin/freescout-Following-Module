@@ -1,0 +1,25 @@
+{
+    "name": "freescout/following",
+    "description": "",
+    "authors": [
+        {
+            "name": "Ben Perry",
+            "email": "support@freescout.net"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Following\\Providers\\FollowingServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Following\\": ""
+        }
+    }
+}

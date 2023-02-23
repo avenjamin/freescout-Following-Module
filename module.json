@@ -1,0 +1,23 @@
+{
+    "name": "Following",
+    "alias": "following",
+    "description": "FreeScout Module that adds a Following folder.",
+    "version": "1.0.0",
+    "detailsUrl": "",
+    "author": "Ben Perry",
+    "authorUrl": "",
+    "requiredAppVersion": "1.0.2",
+    "license": "AGPL-3.0",
+    "keywords": [],
+    "img": "/modules/following/img/freescout-following-module-256x256.png",
+    "active": 0,
+    "order": 0,
+    "providers": [
+        "Modules\\Following\\Providers\\FollowingServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}
