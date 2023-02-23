@@ -10,7 +10,7 @@ define('FOLLOWING_MODULE', 'following');
 class FollowingServiceProvider extends ServiceProvider
 {
     const TYPE_FOLLOWING = 26;
-    
+
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -37,7 +37,7 @@ class FollowingServiceProvider extends ServiceProvider
      */
     public function hooks()
     {
-        
+
         // Following Folder Name
         \Eventy::addFilter('folder.type_name', function($name, $folder) {
             return ($folder->type == self::TYPE_FOLLOWING ? __('Following') : $name);
@@ -54,8 +54,8 @@ class FollowingServiceProvider extends ServiceProvider
         \Eventy::addFilter('folder.conversations_order_by', function($order_by, $folder_type) {
             return ($folder_type == self::TYPE_FOLLOWING ? [['updated_at' => 'desc']] : $order_by);
         }, 20, 2);
-        
-        
+
+
         // Following conversations query
         \Eventy::addFilter('folder.conversations_query', function($query_conversations, $folder, $user_id) {
             if ($folder->type == self::TYPE_FOLLOWING) {
@@ -64,8 +64,8 @@ class FollowingServiceProvider extends ServiceProvider
             }
             return $query_conversations;
         }, 20, 3);
-        
-        
+
+
         // Following folder counter
         \Eventy::addFilter('folder.update_counters', function($update, $folder) {
             if ($folder->type == self::TYPE_FOLLOWING) {
@@ -79,8 +79,8 @@ class FollowingServiceProvider extends ServiceProvider
             }
             return $update;
         }, 20, 2);
-        
-        
+
+
         // Add Following Folder to folders
         \Eventy::addFilter('mailbox.folders', function($folders, $mailbox) {
             if (count($folders) && $mailbox->id > 0) {
@@ -88,13 +88,13 @@ class FollowingServiceProvider extends ServiceProvider
                     ->where('user_id', auth()->user()->id)
                     ->where('type', self::TYPE_FOLLOWING)
                     ->first();
-                
+
                 if ($folder)
                     $folders->push($folder);
             }
 
-            return $folders;
-        }, 10, 2);        
+            return $folders->sortBy('type');
+        }, 10, 2);
     }
 
     public static function getUserFollowingConversationIds($mailbox_id, $user_id = null)
@@ -111,7 +111,6 @@ class FollowingServiceProvider extends ServiceProvider
                 return \App\Follower::where('user_id', $user_id)
                     ->pluck('conversation_id')
                     ->toArray();
-                
             } else {
                 activity()
                     ->withProperties([
