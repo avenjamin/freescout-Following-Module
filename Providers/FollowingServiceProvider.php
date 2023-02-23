@@ -79,8 +79,22 @@ class FollowingServiceProvider extends ServiceProvider
             }
             return $update;
         }, 20, 2);
-     
         
+        
+        // Add Following Folder to folders
+        \Eventy::addFilter('mailbox.folders', function($folders, $mailbox) {
+            if (count($folders) && $mailbox->id > 0) {
+                $folder = Folder::where('mailbox_id', $mailbox->id)
+                    ->where('user_id', auth()->user()->id)
+                    ->where('type', self::TYPE_FOLLOWING)
+                    ->first();
+                
+                if ($folder)
+                    $folders->push($folder);
+            }
+
+            return $folders;
+        }, 10, 2);        
     }
 
     public static function getUserFollowingConversationIds($mailbox_id, $user_id = null)
