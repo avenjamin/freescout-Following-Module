@@ -84,7 +84,7 @@ class FollowingServiceProvider extends ServiceProvider
         // Add Following Folder to folders
         \Eventy::addFilter('mailbox.folders', function($folders, $mailbox) {
             if (count($folders) && $mailbox->id > 0) {
-                $folder = Folder::where('mailbox_id', $mailbox->id)
+                $folder = \App\Folder::where('mailbox_id', $mailbox->id)
                     ->where('user_id', auth()->user()->id)
                     ->where('type', self::TYPE_FOLLOWING)
                     ->first();
@@ -108,7 +108,7 @@ class FollowingServiceProvider extends ServiceProvider
                         ->first();
 
             if ($folder) {
-                return Follower::where('user_id', $user_id)
+                return \App\Follower::where('user_id', $user_id)
                     ->pluck('conversation_id')
                     ->toArray();
                 
