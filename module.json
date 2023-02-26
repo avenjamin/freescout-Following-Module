@@ -3,7 +3,7 @@
     "alias": "following",
     "description": "FreeScout Module that adds a Following folder.",
     "version": "1.0.0",
-    "detailsUrl": "",
+    "detailsUrl": "https://github.com/avenjamin/freescout-Following-Module",
     "author": "Ben Perry",
     "authorUrl": "",
     "requiredAppVersion": "1.0.2",
