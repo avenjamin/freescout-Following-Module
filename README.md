@@ -12,7 +12,8 @@ FreeScout Module that adds a "Following" folder showing conversations followed b
 ## Update
 1. Navigate to the Following Module folder e.g. `cd /var/www/html/Modules/Following`
 2. Run `git pull`
-3. Enjoy the update!
+3. Run `chown -R www-data:www-data Following` (or whichever user:group your webserver uses)
+4. Enjoy the update!
 
 ## Known issues:
 * Active conversations count doesn't update properly
