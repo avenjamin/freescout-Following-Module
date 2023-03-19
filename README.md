@@ -1,6 +1,10 @@
 # Freescout Following Module
 FreeScout Module that adds a "Following" folder showing conversations followed by the user.
 
+<img src="Public/img/freescout-following-module-256x256.png" width="192" height="192" style="border-radius: 1em;" />
+
+## Screenshot
+
 ![Following Folder](Public/img/FreeScout-Following-Folder.png)
 
 ## Install
